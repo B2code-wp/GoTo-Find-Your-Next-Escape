@@ -5,10 +5,10 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port=8100",
+    "start": "ng serve",
     "build": "ng build",
     "Node.js.Start": "node server.js",
-    "watch": "ng build --watch --configuration development",
+    "watch": "ng build ",
     "test": "ng test",
     "lint": "ng lint"
   },
