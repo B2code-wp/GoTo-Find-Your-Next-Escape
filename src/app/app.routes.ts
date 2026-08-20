@@ -13,8 +13,6 @@ import { DestinationCardComponent } from './components/shop/destination-card/des
 import { PropularDestinationsComponent } from './components/home/propular-destinations/propular-destinations.component';
 import { RecommendationComponent } from './components/home/recommendation/recommendation.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { TaskComponent } from './components/secret-file/task/task.component';
-import { SecretFile } from './components/secret-file/secret-file';
 
 export const routes: Routes = [
 
@@ -66,11 +64,7 @@ export const routes: Routes = [
   },
   {
     path: 'task',
-    component: TaskComponent,
-  },
-  {
-    path: 'secret-file',
-    component: SecretFile,
+    component: TermsComponent,
   },
 
   // PROTECTED ROUTES
