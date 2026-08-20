@@ -1,0 +1,169 @@
+<ion-content class="page-content">
+  <mat-toolbar class="app-toolbar mat-elevation-z4">
+    <div class="toolbar-container">
+
+      <!-- LOGO -->
+      <a class="logo" (click)="signOut()">
+        <div class="logo-icon-wrapper">
+          <mat-icon>travel_explore</mat-icon>
+        </div>
+        <span class="logo-text">Go<span>To</span></span>
+      </a>
+
+      <span class="spacer"></span>
+
+      <!-- ACTIONS -->
+    <div class="actions">
+  <button mat-button class="btn-logout" (click)="signOut()">
+    <mat-icon>logout</mat-icon> Sign Out
+  </button>
+</div>
+
+      <!-- MOBILE -->
+      <button mat-icon-button class="menu-toggle" (click)="toggleMenu()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" [class.open]="isMenuOpen">
+      <button mat-button (click)="signOut()">Sign Out</button>
+    </div>
+  </mat-toolbar>
+  <div class="payment-wrapper">
+
+    <!-- HEADER -->
+    <div class="page-header">
+      <div class="badge">Membership Plans</div>
+      <h1>Choose Your Travel Subscription</h1>
+      <p>Unlock exclusive travel perks.</p>
+    </div>
+
+    <!-- BILLING -->
+    <div class="billing-toggle-wrap">
+      <span [class.active]="!isAnnual">Monthly</span>
+
+      <div class="toggle-track" [class.annual]="isAnnual" (click)="toggleBilling()">
+        <div class="toggle-thumb"></div>
+      </div>
+
+      <span [class.active]="isAnnual">Annual</span>
+    </div>
+
+<!-- PLANS -->
+<div class="plan-selector">
+  @for (p of plans | keyvalue; track p.key) {
+    <div class="plan-card"
+         [class.selected]="selectedPlanKey === p.key"
+         (click)="selectPlan(p.key)">
+
+      <mat-icon>{{ p.value.icon }}</mat-icon>
+      <div class="plan-name">{{ p.value.name }}</div>
+
+      <div class="plan-price">
+        R{{ isAnnual ? p.value.annual : p.value.monthly }}/monthly
+      </div>
+
+    </div>
+  }
+</div>
+
+
+    <!-- SUMMARY -->
+    <div class="order-summary">
+      <div>
+        {{ currentPlan.name }} <br>
+        {{ isAnnual ? currentPlan.annualBilling : currentPlan.billing }}
+      </div>
+
+      <div>
+        R{{ price }}/monthly <br>
+        <strong>Total: R{{ total }}</strong>
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <form [formGroup]="paymentForm" (ngSubmit)="submit()">
+
+      <!-- Cardholder -->
+      <div class="form-field">
+        <input placeholder="Cardholder" formControlName="cardName">
+        @if (submitted && f['cardName'].invalid) {
+        <small>Name is required</small>
+        }
+      </div>
+
+      <!-- Card Number -->
+      <div class="form-field">
+        <input placeholder="Card Number" formControlName="cardNumber" (input)="formatCardNumber()">
+        @if (submitted && f['cardNumber'].invalid) {
+        <small>Card number is required</small>
+        }
+      </div>
+
+      <!-- Expiry -->
+      <div class="form-field">
+        <input placeholder="MM/YY" formControlName="expiry" (input)="formatExpiry()">
+        @if (submitted && f['expiry'].invalid) {
+        <small>Expiry date is required</small>
+        }
+      </div>
+
+      <!-- CVV -->
+      <div class="form-field">
+        <input type="password" placeholder="CVV" formControlName="cvv">
+        @if (submitted && f['cvv'].invalid) {
+        <small>CVV is required</small>
+        }
+      </div>
+
+      <!-- Email -->
+      <div class="form-field">
+        <input type="email" placeholder="Email" formControlName="email">
+        @if (submitted && f['email'].invalid) {
+        <small>Valid email is required</small>
+        }
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="submit-btn" [disabled]="loading">
+
+        @if (!loading) {
+        <span>Start Membership</span>
+        } @else {
+        <span>Processing...</span>
+        }
+
+      </button>
+
+    </form>
+
+
+  </div>
+
+  <div class="payment-info">
+    <h2 class="subHeader">Why Choose Our Travel Subscription?</h2>
+    <ul class="benefits-list">
+      <li><strong>Exclusive Deals:</strong> Access members-only discounts on flights, hotels, and tours.</li>
+      <li><strong>Personalized Itineraries:</strong> Get custom travel plans based on your preferences.</li>
+      <li><strong>24/7 Support:</strong> Enjoy round-the-clock assistance for all your travel needs.</li>
+      <li><strong>Flexible Plans:</strong> Choose between monthly or annual billing to suit your lifestyle.</li>
+    </ul>
+
+<div class="unsubscribe-box">
+  <button mat-stroked-button color="warn" (click)="unsubscribe()">
+    Unsubscribe
+  </button>
+
+  <p>
+    Subscriptions are billed monthly or annually based on your selection.
+    You can cancel anytime and enjoy the benefits until the end of your billing cycle.
+  </p>
+</div>
+
+  </div>
+
+  <app-footer></app-footer>
+</ion-content>
+
+

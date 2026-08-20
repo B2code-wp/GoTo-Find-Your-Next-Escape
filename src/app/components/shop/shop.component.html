@@ -1,0 +1,704 @@
+
+<ion-content class="page">
+  <!-- =========================================================
+       HEADER / TOOLBAR
+  ========================================================== -->
+
+<mat-toolbar class="app-toolbar mat-elevation-z4">
+
+  <div class="toolbar-container">
+
+    <!-- LOGO -->
+    <button
+      class="logo"
+      mat-button
+      (click)="navigate('/')"
+      aria-label="Go home"
+    >
+      <div class="logo-icon-wrapper">
+        <mat-icon>travel_explore</mat-icon>
+
+      </div>
+
+
+    </button>
+   <span class="logo-text">
+        Go<span>To</span>
+      </span>
+    <span class="spacer"></span>
+
+    <!-- DESKTOP ACTIONS -->
+    <div class="actions desktop-only">
+
+      <!-- DARK MODE -->
+      <button
+        mat-icon-button
+        class="theme-btn"
+        (click)="toggleDarkMode()"
+        [attr.aria-label]="darkMode ? 'Enable light mode' : 'Enable dark mode'"
+      >
+        <mat-icon>
+          {{ darkMode ? 'light_mode' : 'dark_mode' }}
+        </mat-icon>
+      </button>
+
+      <!-- PAYMENT -->
+      <button
+        mat-button
+        class="toolbar-btn"
+        (click)="navigate('/payment')"
+      >
+        <mat-icon>payments</mat-icon>
+        <span>Payment</span>
+      </button>
+
+      <!-- CART -->
+      <button
+        mat-button
+        class="toolbar-btn cart-btn"
+        [matBadge]="cart.length"
+        [matBadgeHidden]="cart.length === 0"
+        matBadgeColor="warn"
+        (click)="presentAlert()"
+      >
+        <mat-icon>shopping_bag</mat-icon>
+        <span>Trips</span>
+      </button>
+
+      <!-- SIGN OUT -->
+      <button
+        mat-button
+        class="toolbar-btn logout-btn"
+        (click)="signOut()"
+      >
+        <mat-icon>logout</mat-icon>
+        <span>Sign Out</span>
+      </button>
+
+    </div>
+
+    <!-- MOBILE MENU BUTTON -->
+    <button
+      mat-icon-button
+      class="menu-toggle mobile-only"
+      (click)="toggleMenu()"
+      aria-label="Toggle menu"
+    >
+      <mat-icon>
+        {{ isMenuOpen ? 'close' : 'menu' }}
+      </mat-icon>
+    </button>
+
+  </div>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" [class.open]="isMenuOpen">
+
+    <button mat-button (click)="navigate('/payment')">
+      <mat-icon>payments</mat-icon>
+      <span>Payment</span>
+    </button>
+
+    <button mat-button (click)="toggleCart()">
+      <mat-icon>shopping_bag</mat-icon>
+      <span>Trips ({{ cart.length }})</span>
+    </button>
+
+    <button mat-button (click)="toggleDarkMode()">
+      <mat-icon>
+        {{ darkMode ? 'light_mode' : 'dark_mode' }}
+      </mat-icon>
+
+      <span>
+        {{ darkMode ? 'Light Mode' : 'Dark Mode' }}
+      </span>
+    </button>
+
+    <button mat-button (click)="signOut()">
+      <mat-icon>logout</mat-icon>
+      <span>Sign Out</span>
+    </button>
+
+  </div>
+
+</mat-toolbar>
+  <!-- =========================================================
+       HERO
+  ========================================================== -->
+
+  <section class="hero">
+
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+
+      <div class="hero-badge">
+        ✈ Explore 120+ Luxury Destinations Worldwide
+      </div>
+
+      <h1>
+        Discover Your
+        <span>Next Adventure</span>
+      </h1>
+
+      <p>
+        Explore premium travel experiences, discover beautiful
+        destinations and create unforgettable memories around
+        the world.
+      </p>
+<div class="hero-buttons">
+
+  <button
+    mat-raised-button
+    color="primary"
+    class="explore-btn"
+  >
+    <mat-icon>explore</mat-icon>
+    Explore Trips
+  </button>
+
+  <button
+    mat-stroked-button
+    class="hero-cart-btn"
+    [matBadge]="cart.length"
+    [matBadgeHidden]="cart.length === 0"
+    matBadgeColor="warn"
+    (click)="presentAlert()"
+  >
+    <mat-icon>shopping_bag</mat-icon>
+    Trips
+  </button>
+
+</div>
+
+      <!-- STATS -->
+      <div class="hero-stats">
+
+        <div class="stat">
+          <h3>500+</h3>
+          <span>Trips</span>
+        </div>
+
+        <div class="stat">
+          <h3>10K+</h3>
+          <span>Travelers</span>
+        </div>
+
+        <div class="stat">
+          <h3>4.9</h3>
+          <span>Ratings</span>
+        </div>
+
+        <p>
+  featute works!
+</p>
+<!-- SECTION INTRO -->
+<div class="section-intro">
+  <p class="eyebrow">What we offer</p>
+  <h2>Everything you need to travel well</h2>
+  <p class="intro-desc">
+    From handpicked destinations to trusted reviews, ToGo Travel covers
+    every step of your journey.
+  </p>
+</div>
+
+
+</div>
+
+      </div>
+
+
+  </section>
+
+  <!-- =========================================================
+       FILTER BAR
+  ========================================================== -->
+
+  <section class="filters-section container">
+
+    <!-- SEARCH -->
+    <mat-form-field appearance="outline" class="filter-field">
+
+      <mat-label>Search destination</mat-label>
+
+      <mat-icon matPrefix>search</mat-icon>
+
+      <input
+        matInput
+        [(ngModel)]="searchTerm"
+        (input)="filterPlaces()"
+        placeholder="Search by place or country"
+      />
+
+    </mat-form-field>
+
+    <!-- COUNTRY -->
+    <mat-form-field appearance="outline" class="filter-field">
+
+      <mat-label>Country</mat-label>
+
+      <mat-icon matPrefix>public</mat-icon>
+
+      <mat-select
+        [(ngModel)]="selectedCountry"
+        (selectionChange)="filterPlaces()"
+      >
+
+        <mat-option value="">
+          All Countries
+        </mat-option>
+
+        @for (country of countries; track country) {
+
+          @if (country !== '') {
+
+            <mat-option [value]="country">
+              {{ country }}
+            </mat-option>
+
+          }
+
+        }
+
+      </mat-select>
+
+    </mat-form-field>
+
+    <!-- SORT -->
+    <mat-form-field appearance="outline" class="filter-field">
+
+      <mat-label>Sort By</mat-label>
+
+      <mat-icon matPrefix>sort</mat-icon>
+
+      <mat-select
+        [(ngModel)]="sortBy"
+        (selectionChange)="filterPlaces()"
+      >
+
+        <mat-option value="rating">
+          Highest Rating
+        </mat-option>
+
+        <mat-option value="days-low">
+          Lowest Days
+        </mat-option>
+
+        <mat-option value="days-high">
+          Highest Days
+        </mat-option>
+
+        <mat-option value="name">
+          Name
+        </mat-option>
+
+      </mat-select>
+
+    </mat-form-field>
+
+  </section>
+
+  <!-- =========================================================
+       MAIN LAYOUT
+  ========================================================== -->
+
+  <div class="container main-layout">
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+      <div
+        class="sidebar-item"
+        [class.active]="selectedCategory === 'all'"
+        (click)="setCategory('all')"
+      >
+        <mat-icon>apps</mat-icon>
+        <span>All</span>
+      </div>
+
+      <div
+        class="sidebar-item"
+        [class.active]="selectedCategory === 'trending'"
+        (click)="setCategory('trending')"
+      >
+        <mat-icon>local_fire_department</mat-icon>
+        <span>Trending</span>
+      </div>
+
+      <div
+        class="sidebar-item"
+        [class.active]="selectedCategory === 'adventure'"
+        (click)="setCategory('adventure')"
+      >
+        <mat-icon>flight_takeoff</mat-icon>
+        <span>Adventure</span>
+      </div>
+
+      <div
+        class="sidebar-item"
+        [class.active]="selectedCategory === 'nature'"
+        (click)="setCategory('nature')"
+      >
+        <mat-icon>terrain</mat-icon>
+        <span>Nature</span>
+      </div>
+
+      <div
+        class="sidebar-item"
+        [class.active]="selectedCategory === 'beach'"
+        (click)="setCategory('beach')"
+      >
+        <mat-icon>beach_access</mat-icon>
+        <span>Beach</span>
+      </div>
+
+      <div
+        class="sidebar-item"
+        [class.active]="selectedCategory === 'luxury'"
+        (click)="setCategory('luxury')"
+      >
+        <mat-icon>diamond</mat-icon>
+        <span>Luxury</span>
+      </div>
+
+      <div
+        class="sidebar-item"
+        [class.active]="selectedCategory === 'culture'"
+        (click)="setCategory('culture')"
+      >
+        <mat-icon>museum</mat-icon>
+        <span>Culture</span>
+      </div>
+
+
+
+    </aside>
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+      <!-- LOADING -->
+      @if (loading) {
+
+        <div class="loading-state">
+
+          <div class="spinner"></div>
+
+          <p>Loading destinations...</p>
+
+        </div>
+
+      } @else {
+
+        <!-- GRID -->
+        <section class="video-grid">
+
+          @for (
+            place of filteredPlaces;
+            track trackByName($index, place)
+          ) {
+
+            <article class="destination-card">
+
+              <!-- IMAGE -->
+              <div class="thumbnail">
+
+                <img
+                  title="place.name"
+                  [src]="place.image"
+                  [alt]="place.name"
+                />
+
+                <span class="duration">
+                  {{ place.country }}
+                </span>
+
+              </div>
+
+              <!-- CONTENT -->
+              <div class="video-info">
+
+                <div class="card-top">
+
+                  <div>
+
+                    <!--<h3>{{ place.country }}</h3>-->
+
+                    <p class="meta">
+                      ⭐ {{ place.rating }}
+                      •
+                      {{ place.days }} days
+                    </p>
+
+                  </div>
+
+                  <!-- LIKE -->
+                  <button
+                    mat-icon-button
+                    class="favorite-btn"
+                    (click)="toggleLike(place)"
+                  >
+
+                    <mat-icon>
+                      {{
+                        place.liked
+                          ? 'favorite'
+                          : 'favorite_border'
+                      }}
+                    </mat-icon>
+
+                  </button>
+
+                </div>
+
+                <!-- REVIEW -->
+                <p class="review-text">
+                  {{ place.review }}
+                </p>
+
+                <!-- TAGS -->
+                <div class="tags">
+
+                  @if (place.trending) {
+                    <span class="tag trending">
+                      Trending
+                    </span>
+                  }
+
+                  @if (place.adventure) {
+                    <span class="tag adventure">
+                      Adventure
+                    </span>
+                  }
+
+                  @if (place.nature) {
+                    <span class="tag nature">
+                      Nature
+                    </span>
+                  }
+
+                  @if (place.beach) {
+                    <span class="tag beach">
+                      Beach
+                    </span>
+                  }
+
+                  @if (place.luxury) {
+                    <span class="tag luxury">
+                      Luxury
+                    </span>
+                  }
+
+                </div>
+
+                <!-- ACTIONS -->
+                <div class="card-actions">
+
+                  <button
+                    mat-flat-button
+                    color="primary"
+                    class="explore-trip-btn"
+                    (click)="addToCart(place)"
+                  >
+
+                    <mat-icon>shopping_cart</mat-icon>
+
+                    Explore Trip
+
+                  </button>
+
+                </div>
+
+              </div>
+
+            </article>
+
+          }
+
+        </section>
+
+      }
+
+    </main>
+
+  </div>
+
+  <!-- =========================================================
+       CART PANEL1
+  ========================================================== -->
+
+  @if (showCart) {
+
+    <aside
+      #cartPanel
+      class="cart-panel2"
+    >
+
+      <!-- HEADER -->
+      <div class="cart-header">
+
+        <div class="cart-title">
+
+          <mat-icon>shopping_bag</mat-icon>
+
+          <h3>Your Trips</h3>
+
+        </div>
+
+        <button
+          mat-icon-button
+          (click)="toggleCart()"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+
+      </div>
+
+      <!-- EMPTY -->
+      @if (cart.length === 0) {
+
+        <div class="empty-cart">
+
+          <mat-icon>shopping_cart</mat-icon>
+
+          <h4>Your cart is empty</h4>
+
+          <p>
+            Add destinations to begin planning.
+          </p>
+
+        </div>
+
+      } @else {
+
+        <!-- ITEMS -->
+        <div class="cart-items2">
+
+          @for (item of cart; track item.name) {
+
+            <div class="cart-item">
+
+              <img
+               title="item.name"
+                [src]="item.image"
+                [alt]="item.name"
+              />
+
+              <div class="cart-info">
+
+                <h4>{{ item.name }}</h4>
+
+                <small>{{ item.country }}</small>
+
+                <p>
+                  {{ item.days }} days
+                </p>
+
+                <!-- QTY -->
+                <div class="qty-controls">
+
+                  <button
+                    mat-mini-fab
+                    (click)="decreaseQty(item)"
+                  >
+                    -
+                  </button>
+
+                  <span>{{ item.qty }}</span>
+
+                </div>
+
+              </div>
+
+              <!-- DELETE -->
+              <button
+                mat-icon-button
+                class="delete-btn"
+                (click)="removeItem(item)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+
+            </div>
+
+          }
+
+        </div>
+
+        <!-- FOOTER -->
+        <div class="cart-footer2">
+
+          <div>
+
+            <strong>Total</strong>
+
+            <p>{{ total | number }}</p>
+
+          </div>
+
+          <div class="cart-footer-actions">
+
+            <button
+              mat-stroked-button
+              (click)="clearCart()"
+            >
+              Clear
+            </button>
+
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="buyItems()"
+            >
+              Checkout
+            </button>
+
+          </div>
+
+        </div>
+
+      }
+
+    </aside>
+
+  }
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
+
+  <footer class="footer">
+
+    <p>
+      © 2026 GoTo Travel — Explore The World
+    </p>
+
+    <div class="socials">
+
+      <img
+        src="assets/icon/facebook.png"
+        alt="facebook"
+      />
+
+      <img
+        src="assets/icon/instagram.png"
+        alt="instagram"
+      />
+
+      <img
+        src="assets/icon/twitter.png"
+        alt="twitter"
+      />
+
+    </div>
+
+  </footer>
+
+</ion-content>
+<router-outlet></router-outlet>

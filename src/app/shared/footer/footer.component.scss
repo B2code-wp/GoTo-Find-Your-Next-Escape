@@ -1,0 +1,43 @@
+/* =========================
+   FOOTER
+========================= */
+.footer {
+  text-align: center;
+  padding: 10px;
+  margin-top: 170px;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.759);
+  font-size: 15px;
+  border-radius: 30px;
+}
+
+/* SOCIAL ICONS */
+.share-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.share-icons a {
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  background-color: whitesmoke;
+  color:#e0f7fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.share-icons a:hover {
+  background: #ffffff;
+  transform: scale(1.1);
+}
+
+.social-icon {
+  width: 60px;
+  height: 60px;
+}

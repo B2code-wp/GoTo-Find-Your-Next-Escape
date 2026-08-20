@@ -1,0 +1,101 @@
+/* HEADER */
+.app-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 0 16px;
+
+  .toolbar-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* LOGO */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+
+    .logo-icon-wrapper {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 6px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-text {
+      font-size: 20px;
+      font-weight: 600;
+
+      span {
+        color: #ffcc00;
+      }
+    }
+  }
+
+  /* SPACER */
+  .spacer {
+    flex: 1;
+  }
+
+  /* ACTION BUTTONS */
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .action-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 8px;
+      padding: 6px 12px;
+      background-color: #00000016;
+      color: rgb(0, 0, 0);
+      transition: all 0.3s ease;
+
+      mat-icon {
+        font-size: 20px;
+      }
+
+      &:hover {
+        background: rgba(255, 234, 5, 0.473);
+      }
+    }
+  }
+
+  /* MOBILE TOGGLE */
+  .menu-toggle {
+    display: none;
+    color: rgb(0, 0, 0);
+  }
+
+  /* MOBILE MENU */
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: #fee272;
+
+    border-radius: 20px 20px 20px;
+    padding: 10px 16px;
+    gap: 10px;
+    margin-top: auto;
+
+    button {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: flex-start;
+      color: rgb(0, 0, 0);
+    }
+  }
+
+  .mobile-menu.open {
+    display: flex;
+  }
+}

@@ -1,0 +1,32 @@
+<ion-header>
+  <mat-toolbar color="primary" class="app-toolbar mat-elevation-z4">
+
+    <div class="toolbar-container">
+
+      <!-- LOGO -->
+      <div class="header-left">
+        <a class="logo" routerLink="/">
+          <div class="logo-icon-wrapper">
+            <mat-icon>search</mat-icon>
+          </div>
+          <span class="logo-text">Go<span>To</span></span>
+        </a>
+      </div>
+
+      <span class="spacer"></span>
+    </div>
+
+    <button mat-button routerLink="/login" (click)="closeMenu()" class="action-btn">
+      <mat-icon>login</mat-icon>
+      <span class="button-text">Login</span>
+    </button>
+
+
+    <button mat-button routerLink="/home" (click)="closeMenu()">
+      <mat-icon>arrow_back</mat-icon>
+      Back
+    </button>
+
+
+  </mat-toolbar>
+</ion-header>

@@ -1,0 +1,345 @@
+<ion-header>
+
+  <mat-toolbar class="app-toolbar mat-elevation-z4">
+
+    <div class="toolbar-container">
+
+      <!-- LOGO -->
+      <a class="logo" routerLink="/">
+
+        <div class="logo-icon-wrapper">
+          <mat-icon>travel_explore</mat-icon>
+        </div>
+
+        <div class="logo-details">
+          <span class="logo-text">
+            Go<span>To</span>
+          </span>
+
+          <small>Escape • Explore • Relax</small>
+        </div>
+
+      </a>
+
+      <!-- NAVIGATION -->
+      <div class="toolbar-actions">
+
+        <button
+          mat-flat-button
+          routerLink="/login"
+          class="glass-btn">
+
+          <mat-icon>login</mat-icon>
+          Login
+        </button>
+
+        <button
+          mat-stroked-button
+          routerLink="/home"
+          class="glass-btn">
+
+          <mat-icon>forest</mat-icon>
+          Explore
+        </button>
+
+      </div>
+
+    </div>
+
+  </mat-toolbar>
+
+</ion-header>
+
+<!-- =====================================================
+     HERO SECTION
+===================================================== -->
+
+<section class="hero-section">
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+
+    <div class="hero-badge">
+      🍹 Tropical Vacation Planner
+    </div>
+
+    <h1>
+      Plan Your Forest Escape
+      <span>One Adventure at a Time</span>
+    </h1>
+
+    <p>
+      Organize your travel goals, create unforgettable experiences,
+      and prepare for your next relaxing getaway surrounded by
+      nature, waterfalls, and tropical vibes.
+    </p>
+
+    <div class="hero-actions">
+
+      <button
+        mat-raised-button
+        class="hero-primary-btn"
+        (click)="onStartAddTask()">
+
+        <mat-icon>add_circle</mat-icon>
+        Create Vacation Plan
+      </button>
+
+      <button
+        mat-stroked-button
+        class="hero-secondary-btn">
+
+        <mat-icon>map</mat-icon>
+        Explore Destinations
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<section id="tasks" class="tasks-container">
+
+  <!-- =====================================================
+       VACATION SUMMARY CARD
+  ===================================================== -->
+
+  <mat-card class="tasks-header-card mat-elevation-z3">
+
+    <div class="tasks-header">
+
+      <div class="header-left">
+
+        <div class="header-icon-wrapper">
+          <mat-icon class="header-icon">
+            deck
+          </mat-icon>
+        </div>
+
+        <div class="title-group">
+
+          <span class="mini-label">
+            🌿 YOUR ADVENTURE SPACE
+          </span>
+
+          <h2>
+            {{ name || 'Guest' }}'s Travel Plans
+          </h2>
+
+          <p>
+            Stay organized while planning peaceful forest retreats,
+            beach escapes, tropical drinks, and unforgettable journeys.
+          </p>
+
+        </div>
+
+      </div>
+
+      <button
+        mat-raised-button
+        class="add-btn"
+        (click)="onStartAddTask()">
+
+        <mat-icon>add</mat-icon>
+        Add New Adventure
+      </button>
+
+    </div>
+
+  </mat-card>
+
+  <!-- =====================================================
+       TASK SECTION
+  ===================================================== -->
+
+  <mat-card class="task-card mat-elevation-z2">
+
+    <div class="card-banner">
+
+      <div class="banner-content">
+
+        <div>
+          <span class="banner-tag">
+            🌴 Tropical Journey Planner
+          </span>
+
+          <h3>Your Vacation Checklist</h3>
+
+          <p>
+            Track places to visit, activities to try,
+            drinks to enjoy, and memories to create.
+          </p>
+        </div>
+
+        <div class="banner-icon">
+          🍹
+        </div>
+
+      </div>
+
+    </div>
+
+    <mat-card-content>
+
+      <!-- EMPTY STATE -->
+
+      @if (selectedUserTask.length === 0) {
+
+        <div class="empty-state">
+
+          <div class="empty-image">
+            🌲🍹🌊
+          </div>
+
+          <h3>No Adventures Planned Yet</h3>
+
+          <p>
+            Start planning your dream getaway. Add activities,
+            destinations, relaxing experiences, or exciting
+            forest adventures to your travel list.
+          </p>
+
+          <button
+            mat-raised-button
+            class="empty-btn"
+            (click)="onStartAddTask()">
+
+            <mat-icon>explore</mat-icon>
+            Start Planning
+          </button>
+
+        </div>
+      }
+
+      <!-- TASK LIST -->
+
+      @if (selectedUserTask.length > 0) {
+
+        <div class="task-grid">
+
+          @for (task of selectedUserTask; track task.id) {
+
+            <div class="task-grid-item">
+
+        <app-task-list
+  [task]="task"
+  (complete)="onCompleteTask($event)">
+</app-task-list>
+
+            </div>
+
+          }
+
+        </div>
+      }
+
+    </mat-card-content>
+
+  </mat-card>
+
+  <!-- =====================================================
+       VIDEO EXPERIENCE SECTION
+  ===================================================== -->
+
+  <section class="video-section">
+
+    <div class="video-content">
+
+      <div class="video-text">
+
+        <span class="section-tag">
+          🌿 Relaxation Destination
+        </span>
+
+        <h2>
+          Discover Your Next Peaceful Escape
+        </h2>
+
+        <p>
+          Experience relaxing forest views, tropical landscapes,
+          refreshing drinks, waterfalls, and beautiful hidden places
+          around the world.
+        </p>
+
+      </div>
+
+      <div class="video-wrapper">
+
+        <video controls>
+          <source src="movie.mp4" type="video/mp4">
+          <source src="movie.ogg" type="video/ogg">
+
+          Your browser does not support the video tag.
+        </video>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</section>
+
+<!-- =====================================================
+     FLOATING VACATION DECOR
+===================================================== -->
+
+<div class="floating-decor decor-1">🍃</div>
+<div class="floating-decor decor-2">🍹</div>
+<div class="floating-decor decor-3">🌴</div>
+
+<!-- =====================================================
+     MODAL
+===================================================== -->
+
+@if (isAddingTask) {
+
+  <div class="backdrop" (click)="onCancelTask()"></div>
+
+  <div class="task-modal mat-elevation-z5">
+
+    <div class="modal-header">
+
+      <div class="modal-title">
+
+        <mat-icon>luggage</mat-icon>
+
+        <div>
+          <h3>Create Vacation Plan</h3>
+          <small>Add a new relaxing adventure</small>
+        </div>
+
+      </div>
+
+      <button
+        mat-icon-button
+        (click)="onCancelTask()">
+
+        <mat-icon>close</mat-icon>
+      </button>
+
+    </div>
+
+    <div class="modal-content">
+
+      <app-new-task
+        [userId]="userId"
+        (cancel)="onCancelTask()">
+      </app-new-task>
+
+    </div>
+
+  </div>
+}
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<app-footer></app-footer>

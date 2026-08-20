@@ -1,0 +1,103 @@
+<ion-header>
+  <mat-toolbar color="primary" class="app-toolbar mat-elevation-z4">
+
+    <div class="toolbar-container">
+
+      <!-- LOGO -->
+      <div class="header-left">
+        <a class="logo" routerLink="/">
+          <div class="logo-icon-wrapper">
+            <mat-icon>search</mat-icon>
+          </div>
+          <span class="logo-text">Go<span>To</span></span>
+        </a>
+      </div>
+
+      <span class="spacer"></span>
+    </div>
+
+<button class="btn-nav" mat-button routerLink="/home" (click)="closeMenu()">
+  <mat-icon>arrow_back</mat-icon>
+  <span class="btn-text">Back</span>
+</button>
+
+
+  </mat-toolbar>
+</ion-header>
+<ion-content class="reviews-content">
+
+
+  <!-- PAGE WRAPPER -->
+  <div class="reviews-wrapper container">
+
+    <!-- HEADER SECTION -->
+    <div class="page-header">
+      <h1>Traveler Reviews</h1>
+      <p>Real experiences from explorers around the world</p>
+    </div>
+
+    <!-- REVIEWS GRID -->
+    <div class="reviews-grid">
+
+      @for (review of reviews; track review; let index = $index) {
+
+        <ion-card class="review-card">
+
+          <!-- USER HEADER -->
+          <div class="review-top">
+
+            <ion-avatar>
+              <img title="image" [src]="'https://picsum.photos/80/80?random=' + index" />
+            </ion-avatar>
+
+            <div class="user-info">
+              <h3>{{ review.userName }}</h3>
+              <small>{{ review.date }}</small>
+            </div>
+
+          </div>
+
+          <!-- RATING -->
+          <div class="rating">
+            @for (star of [1,2,3,4,5]; track star) {
+              <mat-icon>
+                {{ star <= review.rating ? 'star' : 'star_border' }}
+              </mat-icon>
+            }
+          </div>
+
+          <!-- COMMENT -->
+          <p class="comment">
+            {{ review.comment }}
+          </p>
+
+        </ion-card>
+
+      }
+
+    </div>
+
+  </div>
+
+  <!-- INFINITE SCROLL -->
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="crescent"
+      loadingText="Loading more reviews...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>© 2026 ToGo Travel</p>
+  <small>Explore the world with confidence</small>
+
+  <div class="share-icons">
+    <a><img title="image" src="assets/icon/facebook.png" /></a>
+    <a><img title="image" src="assets/icon/instagram.png" /></a>
+    <a><img title="image" src="assets/icon/twitter.png" /></a>
+  </div>
+</footer>

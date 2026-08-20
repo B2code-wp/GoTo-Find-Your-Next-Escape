@@ -1,0 +1,206 @@
+<!-- HEADER -->
+<ion-header>
+  <mat-toolbar color="primary" class="app-toolbar mat-elevation-z4">
+
+    <div class="toolbar-container">
+      <!-- LOGO -->
+      <a class="logo" routerLink="/">
+        <div class="logo-icon-wrapper">
+          <mat-icon>search</mat-icon>
+        </div>
+        <span class="logo-text">Go<span>To</span></span>
+      </a>
+
+      <span class="spacer"></span>
+
+      <!-- ACTIONS -->
+      <button mat-button routerLink="/registration-form">
+        <mat-icon>person_add</mat-icon>
+        Register
+      </button>
+
+      <button mat-button routerLink="/home">
+        <mat-icon>arrow_back</mat-icon>
+        Back
+      </button>
+    </div>
+
+  </mat-toolbar>
+</ion-header>
+
+<!-- MAIN CONTENT -->
+<ion-content class="page-content">
+
+  <div class="container">
+
+    <!-- TITLE -->
+    <h1 class="title">
+      Share Your Travel Recommendation
+    </h1>
+
+    <!-- CHAT BUTTON -->
+    <button class="chat-btn" (click)="isChatOpen = true">
+      Chat
+    </button>
+
+    <!-- CHAT POPUP -->
+@if (isChatOpen) {
+  <div class="chat-popup">
+    <form class="chat-form" (ngSubmit)="sendMessage()">
+      <h2>Chat</h2>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Message</mat-label>
+        <textarea title="chatMessage" matInput [(ngModel)]="chatMessage" name="msg" required></textarea>
+      </mat-form-field>
+
+      <div class="chat-actions">
+        <button mat-raised-button color="primary" type="submit">Send</button>
+        <button mat-button type="button" (click)="isChatOpen = false">Close</button>
+      </div>
+    </form>
+  </div>
+}
+    <!-- FORM -->
+ <mat-card class="form-card">
+
+  <form [formGroup]="recommendationForm" (ngSubmit)="addRecommendation()">
+
+    <!-- NAME -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Your Name</mat-label>
+      <input title="name" matInput formControlName="name" />
+      <mat-icon matPrefix>person</mat-icon>
+
+      @if (recommendationForm.get('name')?.invalid && recommendationForm.get('name')?.touched) {
+        <mat-error>Name is required</mat-error>
+      }
+    </mat-form-field>
+
+    <!-- DESTINATION -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Destination</mat-label>
+      <input title="destination" matInput formControlName="destination" />
+      <mat-icon matPrefix>location_on</mat-icon>
+
+      @if (recommendationForm.get('destination')?.invalid && recommendationForm.get('destination')?.touched) {
+        <mat-error>Destination is required</mat-error>
+      }
+    </mat-form-field>
+
+    <!-- REASON -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Why do you recommend it?</mat-label>
+      <textarea title="Reason for recommendation" matInput rows="4" formControlName="reason"></textarea>
+      <mat-icon matPrefix>rate_review</mat-icon>
+
+      @if (recommendationForm.get('reason')?.invalid && recommendationForm.get('reason')?.touched) {
+        <mat-error>Minimum 10 characters required</mat-error>
+      }
+    </mat-form-field>
+
+    <!-- UPLOAD SECTION -->
+<div class="upload-section">
+
+  <h3 class="upload-title">Upload Image Taken</h3>
+
+  <!-- Upload -->
+  <input
+  class="takePic"
+    type="file"
+    accept="image/*"
+    (change)="onFileSelected($event, 'upload')"
+    title="Upload File"
+  />
+
+  <!-- Preview using @if -->
+  @if (previewUrl) {
+    <div class="preview">
+      <img [src]="previewUrl" alt="Preview" />
+    </div>
+  }
+</div>
+
+    <!-- SUBMIT -->
+  <button
+  mat-raised-button
+  color="primary"
+  class="submit-btn"
+  type="submit"
+  [disabled]="recommendationForm.invalid"
+>
+  <mat-icon>send</mat-icon>
+  Submit
+</button>
+
+  </form>
+
+</mat-card>
+
+    <!-- REVIEWS -->
+    @if (reviews.length > 0) {
+  <section class="reviews-section">
+
+    <h2 class="reviews-title">
+      <mat-icon>forum</mat-icon>
+      Traveler Reviews
+    </h2>
+
+    @for (review of reviews; track review; let i = $index) {
+      <mat-card class="review-card">
+
+        <div class="review-header">
+          <div>
+            <h3>{{ review.name }}</h3>
+            <span class="destination">
+              <mat-icon>place</mat-icon>
+              {{ review.destination }}
+            </span>
+          </div>
+
+          <button mat-icon-button color="warn"
+                  (click)="deleteReview(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+
+        <p class="reason">
+          <mat-icon class="quote">format_quote</mat-icon>
+          {{ review.reason }}
+        </p>
+
+      </mat-card>
+    }
+
+  </section>
+}
+
+  </div>
+</ion-content>
+<!-- FOOTER -->
+    <footer class="footer">
+
+      <p>© 2026 ToGo Travel</p>
+      <small>Explore the world with confidence</small>
+
+      <!-- Share Icons -->
+      <div href="###########" class="share-icons">
+        <a mat-icon-button aria-label="Share on Facebook">
+          <img src="assets/icon/facebook.png" alt="Facebook" class="social-icon" />
+          <mat-icon svgIcon="facebook"></mat-icon>
+        </a>
+
+        <a href="###########" mat-icon-button aria-label="Share on Instagram">
+          <img src="assets/icon/instagram.png" alt="Instagram" class="social-icon" />
+          <mat-icon svgIcon="instagram"></mat-icon>
+        </a>
+
+        <a href="###########" mat-icon-button aria-label="Share on Twitter">
+          <img src="assets/icon/twitter.png" alt="Twitter" class="social-icon" />
+          <mat-icon svgIcon="twitter"></mat-icon>
+        </a>
+      </div>
+
+
+    </footer>
+

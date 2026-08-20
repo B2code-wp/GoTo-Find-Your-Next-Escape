@@ -1,0 +1,57 @@
+<section class="card mat-elevation-z2">
+
+  <mat-card>
+
+    <mat-card-header>
+
+      <mat-card-title>
+        <mat-icon aria-hidden="true">
+          assignment
+        </mat-icon>
+
+        {{ task.title }}
+      </mat-card-title>
+
+      <mat-card-subtitle>
+
+        <mat-icon aria-hidden="true">
+          event
+        </mat-icon>
+
+        <time>
+          {{ task.dueDate | date:'fullDate' }}
+        </time>
+
+      </mat-card-subtitle>
+
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <p>
+        {{ task.summary }}...
+      </p>
+
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+
+      <button
+        mat-stroked-button
+        color="primary"
+        type="button"
+        (click)="onCompleteTask()">
+
+        <mat-icon>
+          check_circle_outline
+        </mat-icon>
+
+        Complete
+
+      </button>
+
+    </mat-card-actions>
+
+  </mat-card>
+
+</section>

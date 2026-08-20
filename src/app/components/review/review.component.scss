@@ -1,0 +1,329 @@
+/* =========================
+   GLOBAL PAGE
+========================= */
+
+.reviews-content {
+  --background: #f6f7fb;
+  background: #f6f7fb;
+}
+
+.app-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 16px;
+
+  background: linear-gradient(135deg, #ffffff, #fdfdfdfb);
+
+  .toolbar-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+}
+
+/* =========================
+   LOGO
+========================= */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  text-decoration: none;
+  color: #000;
+
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+
+.logo-icon-wrapper {
+  background: rgba(250, 87, 87, 0.15);
+
+  border-radius: 50%;
+  padding: 6px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-text span {
+  color: #f9c74f;
+}
+
+/* =========================
+   BUTTON BASE
+========================= */
+.btn-base {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 6px 12px;
+  border-radius: 10px;
+
+  transition: all 0.25s ease;
+}
+
+/* =========================
+   NAVIGATION BUTTONS
+========================= */
+.btn-nav,
+.action-btn {
+  @extend .btn-base;
+
+  background-color: rgba(0, 0, 0, 0.06);
+  color: #000;
+
+  font-weight: 500;
+
+  mat-icon {
+    font-size: 20px;
+  }
+
+  &:hover {
+    background: rgba(255, 234, 5, 0.45);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+.btn-text {
+  font-size: 0.95rem;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* =========================
+   MOBILE MENU
+========================= */
+.menu-toggle {
+  display: none;
+  color: #000;
+}
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+
+  background: #fee272;
+
+  border-radius: 20px;
+  padding: 10px 16px;
+
+  gap: 10px;
+  margin-top: auto;
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    justify-content: flex-start;
+
+    color: #000;
+  }
+}
+
+.mobile-menu.open {
+  display: flex;
+}
+
+/* =========================
+   LOGIN CARD
+========================= */
+.login-card {
+  max-width: 420px;
+  width: 100%;
+
+  margin: 6rem auto 2rem;
+
+  padding: 1.5rem;
+
+  border-radius: 18px;
+
+  background: #fff;
+
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+
+  animation: fadeUp 0.4s ease;
+}
+
+/* TITLE */
+.login-h1 {
+  text-align: center;
+
+  font-weight: 800;
+
+  color: #023e8a;
+
+  margin-bottom: 10px;
+}
+
+/* =========================
+   PAGE WRAPPER
+========================= */
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 1.5rem;
+}
+
+/* =========================
+   PAGE HEADER
+========================= */
+
+.page-header {
+  text-align: center;
+  margin: 2rem 0;
+  color: #000;
+}
+
+.page-header h1 {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 800;
+}
+
+.page-header p {
+  color: #666;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.2rem;
+}
+
+/* =========================
+   REVIEW CARD
+========================= */
+
+.review-card {
+  padding: 1.2rem;
+  border-radius: 18px;
+  background: white;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+
+  transition: .3s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 50px rgba(0,0,0,.15);
+}
+
+/* =========================
+   TOP USER SECTION
+========================= */
+
+.review-top {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  margin-bottom: .8rem;
+}
+
+.user-info h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.user-info small {
+  color: #777;
+}
+
+/* =========================
+   RATING
+========================= */
+
+.rating {
+  display: flex;
+  gap: .2rem;
+  margin: .5rem 0;
+}
+
+.rating mat-icon {
+  color: #ffb703;
+  font-size: 20px;
+}
+
+/* =========================
+   COMMENT
+========================= */
+
+.comment {
+  color: #333;
+  line-height: 1.6;
+  font-size: .95rem;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+  margin-top: 3rem;
+  padding: 2rem;
+  text-align: center;
+  background: #111;
+  color: white;
+}
+
+.share-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: .8rem;
+}
+
+.share-icons img {
+  width: 22px;
+  height: 22px;
+  opacity: .8;
+  transition: .3s;
+}
+
+.share-icons img:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-header {
+    padding: 0 1rem;
+  }
+}

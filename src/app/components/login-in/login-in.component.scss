@@ -1,0 +1,684 @@
+/* =========================================
+   GLOBAL
+========================================= */
+
+:host {
+  display: block;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  color: #1e293b;
+}
+
+ion-content {
+  --background:
+    linear-gradient(
+      rgba(255,255,255,0.72),
+      rgba(255,255,255,0.72)
+    ),
+    url("https://images.unsplash.com/photo-1493558103817-58b2924bce98?w=1600&auto=format&fit=crop&q=60")
+    no-repeat center center / cover;
+
+  min-height: 100vh;
+}
+
+/* =========================================
+   TOOLBAR
+========================================= */
+
+.app-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+
+  padding-inline: 18px;
+
+  background: rgba(255,255,255,0.75);
+
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.toolbar-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.spacer {
+  flex: 1;
+}
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  text-decoration: none;
+
+  color: #0f172a;
+
+  transition: 0.3s ease;
+}
+
+.logo:hover {
+  transform: translateY(-2px);
+}
+
+.logo-icon-wrapper {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 14px;
+
+  background: linear-gradient(
+    135deg,
+    #ffb703,
+    #fb8500
+  );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+
+  box-shadow: 0 6px 20px rgba(251,133,0,0.25);
+}
+
+.logo-text {
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.logo-text span {
+  color: #fb8500;
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.btn-nav,
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  height: 42px;
+
+  padding: 0 18px;
+
+  border-radius: 14px;
+
+  background: rgba(255,255,255,0.55);
+
+  color: #0f172a;
+
+  font-weight: 600;
+
+  transition: all 0.25s ease;
+
+}
+
+.btn-nav:hover,
+.action-btn:hover {
+  background: #ffb703;
+  color: #fff;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 10px 25px rgba(255,183,3,0.25);
+}
+
+.btn-nav:active,
+.action-btn:active {
+  transform: scale(0.96);
+}
+
+/* =========================================
+   LOGIN CARD
+========================================= */
+
+.login-card {
+  width: min(92%, 450px);
+
+  margin: 5rem auto 3rem;
+
+  border-radius: 28px;
+
+  padding: 2rem;
+
+  background: rgba(255,255,255,0.82);
+
+  border: 1px solid rgba(255,255,255,0.25);
+
+  box-shadow:
+    0 10px 40px rgba(0,0,0,0.08),
+    0 2px 10px rgba(0,0,0,0.04);
+
+  animation: fadeUp 0.6s ease;
+}
+
+.login-h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.login-h1 mat-card-title {
+  font-size: 2rem;
+  font-weight: 800;
+
+  color: #023047;
+}
+
+/* =========================================
+   FORM
+========================================= */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+::ng-deep .mat-mdc-form-field {
+  width: 100%;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper {
+  border-radius: 16px !important;
+  background: rgba(255,255,255,0.7);
+}
+
+mat-icon[matPrefix] {
+  color: #219ebc;
+}
+
+/* =========================================
+   SUBMIT BUTTON
+========================================= */
+
+button[type="submit"] {
+  width: 100%;
+  height: 52px;
+
+  border-radius: 18px;
+
+  font-size: 1rem;
+  font-weight: 700;
+
+  letter-spacing: 0.4px;
+
+  transition: 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 10px 25px rgba(33,158,188,0.25);
+}
+
+/* =========================================
+   ERROR
+========================================= */
+
+.error {
+  color: #ef4444;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* =========================================
+   REVIEWS SECTION
+========================================= */
+
+.reviews-section {
+  width: min(95%, 1400px);
+
+  margin: 3rem auto;
+
+  padding: 3rem 1.5rem;
+
+  border-radius: 32px;
+
+  background:
+    linear-gradient(
+      rgba(255,255,255,0.75),
+      rgba(255,255,255,0.75)
+    ),
+    url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1600&auto=format&fit=crop&q=60")
+    no-repeat center center / cover;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+}
+
+/* =========================================
+   SECTION HEADER
+========================================= */
+
+.section-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.section-eyebrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  color: #fb8500;
+
+  font-size: 0.9rem;
+  font-weight: 700;
+
+  letter-spacing: 3px;
+
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+
+  font-weight: 800;
+
+  color: #023047;
+
+  margin-top: 1rem;
+}
+
+.section-sub {
+  max-width: 650px;
+
+  margin-inline: auto;
+
+  color: #475569;
+
+  line-height: 1.7;
+}
+
+/* =========================================
+   SLIDER
+========================================= */
+
+.reviews-wrapper {
+  position: relative;
+}
+
+.reviews-grid {
+  display: flex;
+  gap: 24px;
+
+  overflow-x: auto;
+
+  scroll-behavior: smooth;
+
+  padding: 10px;
+
+  scroll-snap-type: x mandatory;
+}
+
+.reviews-grid::-webkit-scrollbar {
+  display: none;
+}
+
+/* =========================================
+   CARD
+========================================= */
+
+.review-card {
+  flex: 0 0 320px;
+
+  border-radius: 24px;
+
+  overflow: hidden;
+
+  background: rgba(255,255,255,0.92);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.08);
+
+  scroll-snap-align: center;
+}
+
+.review-card:hover {
+  transform: translateY(-10px);
+
+  box-shadow:
+    0 20px 45px rgba(0,0,0,0.14);
+}
+
+/* =========================================
+   IMAGE
+========================================= */
+
+.img-wrapper {
+  height: 220px;
+  overflow: hidden;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: transform 0.6s ease;
+}
+
+.review-card:hover .card-img {
+  transform: scale(1.08);
+}
+
+/* =========================================
+   CARD HEADER
+========================================= */
+
+.card-header {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 18px 18px 10px;
+}
+
+.review-avatar {
+  width: 46px;
+  height: 46px;
+
+  border-radius: 14px;
+
+  background: linear-gradient(
+    135deg,
+    #219ebc,
+    #8ecae6
+  );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+
+  flex-shrink: 0;
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.card-subtitle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  margin-top: 4px;
+
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.card-content {
+  padding: 0 18px 18px;
+
+  line-height: 1.7;
+
+  color: #475569;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  margin-top: 1rem;
+
+  padding: 8px 14px;
+
+  border-radius: 999px;
+
+  background: #e0f2fe;
+
+  color: #0284c7;
+
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 0 18px 20px;
+}
+
+/* =========================================
+   SCROLL BUTTONS
+========================================= */
+
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 50px;
+  height: 50px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255,255,255,0.92);
+
+
+  cursor: pointer;
+
+  z-index: 5;
+
+  transition: 0.25s ease;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.scroll-btn:hover {
+  background: #fb8500;
+  color: white;
+
+  transform: translateY(-50%) scale(1.05);
+}
+
+.scroll-btn.left {
+  left: -18px;
+}
+
+.scroll-btn.right {
+  right: -18px;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer {
+  margin-top: 4rem;
+
+  padding: 3rem 1rem;
+
+  text-align: center;
+
+  background: rgba(0,0,0,0.82);
+
+  color: white;
+}
+
+/* =========================================
+   ANIMATION
+========================================= */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 992px) {
+
+  .review-card {
+    flex: 0 0 280px;
+  }
+
+  .scroll-btn {
+    display: none;
+  }
+
+  .login-card {
+    margin-top: 4rem;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+  .app-toolbar {
+    padding-inline: 10px;
+  }
+
+  .toolbar-container {
+    gap: 10px;
+  }
+
+  .logo-text {
+    font-size: 1rem;
+  }
+
+  .btn-nav {
+    padding: 0 12px;
+    height: 38px;
+  }
+
+  .btn-text {
+    display: none;
+  }
+
+  .login-card {
+    width: 94%;
+
+    padding: 1.4rem;
+
+    margin-top: 3rem;
+  }
+
+  .login-h1 mat-card-title {
+    font-size: 1.5rem;
+  }
+
+  .reviews-section {
+    padding: 2rem 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .review-card {
+    flex: 0 0 85%;
+  }
+
+  .card-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .action-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* =========================================
+   SMALL DEVICES
+========================================= */
+
+@media (max-width: 480px) {
+
+  .app-toolbar {
+    padding-inline: 6px;
+  }
+
+  .logo-icon-wrapper {
+    width: 36px;
+    height: 36px;
+  }
+
+  .logo-text {
+    font-size: 0.95rem;
+  }
+
+  .btn-nav {
+    min-width: 42px;
+    padding: 0 10px;
+  }
+
+  .login-card {
+    border-radius: 22px;
+    padding: 1.2rem;
+  }
+
+  .section-title {
+    font-size: 1.7rem;
+  }
+
+  .section-sub {
+    font-size: 0.92rem;
+  }
+
+  .review-card {
+    flex: 0 0 92%;
+  }
+
+  .img-wrapper {
+    height: 200px;
+  }
+
+  button[type="submit"] {
+    height: 48px;
+  }
+}

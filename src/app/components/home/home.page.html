@@ -1,0 +1,372 @@
+<ion-menu
+  contentId="main-content"
+  side="start"
+  type="overlay"
+  class="side-menu"
+>
+
+  <!-- HEADER -->
+  <ion-header>
+    <ion-toolbar class="menu-toolbar">
+
+      <div class="menu-brand">
+
+        <div class="brand-icon">
+                     <mat-icon id="white-icon">location_searching</mat-icon>
+        </div>
+
+        <div class="brand-text">
+
+          <h2>ToGo Travel</h2>
+          <p>Explore the world</p>
+        </div>
+
+      </div>
+
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- CONTENT -->
+  <ion-content class="menu-content">
+
+    <ion-list lines="none">
+
+      <!-- EXPLORE -->
+      <div class="menu-section">
+
+        <p class="menu-heading">Explore</p>
+
+        <ion-item
+          routerLink="/home"
+          routerLinkActive="active-item"
+          class="menu-item"
+        >
+          <ion-icon
+            name="home-outline"
+            slot="start"
+          ></ion-icon>
+
+          <ion-label>Home</ion-label>
+        </ion-item>
+
+        <ion-item
+          routerLink="/explore"
+          routerLinkActive="active-item"
+          class="menu-item"
+        >
+          <ion-icon
+            name="earth-outline"
+            slot="start"
+          ></ion-icon>
+
+          <ion-label>Explore</ion-label>
+        </ion-item>
+
+        <ion-item
+          routerLink="/secret-file"
+          routerLinkActive="active-item"
+          class="menu-item"
+        >
+          <ion-icon
+            name="lock-closed-outline"
+            slot="start"
+          ></ion-icon>
+
+          <ion-label>Secret File</ion-label>
+        </ion-item>
+
+        <ion-item
+          routerLink="/review"
+          routerLinkActive="active-item"
+          class="menu-item"
+        >
+          <ion-icon
+            name="chatbubble-ellipses-outline"
+            slot="start"
+          ></ion-icon>
+
+          <ion-label>Feedback</ion-label>
+        </ion-item>
+
+      </div>
+
+      <!-- ACCOUNT -->
+      <div class="menu-section">
+
+        <p class="menu-heading">Account</p>
+
+        <ion-item
+          routerLink="/login"
+          routerLinkActive="active-item"
+          class="menu-item"
+        >
+          <ion-icon
+            name="log-in-outline"
+            slot="start"
+          ></ion-icon>
+
+          <ion-label>Login</ion-label>
+        </ion-item>
+
+        <ion-item
+          routerLink="/registration-form"
+          routerLinkActive="active-item"
+          class="menu-item"
+        >
+          <ion-icon
+            name="person-add-outline"
+            slot="start"
+
+          ></ion-icon>
+
+          <ion-label>Register</ion-label>
+        </ion-item>
+
+      </div>
+
+    </ion-list>
+
+  </ion-content>
+
+</ion-menu>
+
+<!-- MAIN PAGE -->
+<div class="ion-page" id="main-content">
+
+  <!-- HEADER -->
+  <ion-header>
+    <ion-toolbar class="main-header">
+
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+
+      <ion-title class="logo-text">
+        <div class="header-left">
+          <a class="logo" routerLink="/">
+            <div class="logo-icon-wrapper">
+              <mat-icon id="white-icon">location_searching</mat-icon>
+            </div>
+            <span class="logo-text">Go<span>TO</span></span>
+          </a>
+        </div>
+      </ion-title>
+
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- CONTENT -->
+  <ion-content class="main-content" [fullscreen]="true">
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <!-- LEFT -->
+      <div class="hero-left">
+        <!-- Badge -->
+        <ion-badge color="warning">Explore 2026</ion-badge>
+
+        <!-- Title -->
+        <h1 class="hero-title">
+          Discover Your Next <br />
+          <span class="highlight">Dream Destination</span>
+        </h1>
+
+        <!-- Description -->
+        <p class="hero-description">
+          Welcome to <strong>ToGo Travel</strong> — your gateway to unforgettable journeys.
+          Explore curated destinations, insider tips, and authentic cultural experiences.
+          Whether you're planning a weekend getaway or a global adventure, we bring the
+          world closer to you.
+        </p>
+
+        <!-- Extra Info -->
+  <ul class="hero-features">
+  <li><mat-icon>flight_takeoff</mat-icon> Handpicked destinations worldwide</li>
+  <li><mat-icon>hotel</mat-icon> Trusted accommodation recommendations</li>
+  <li><mat-icon>restaurant</mat-icon> Local food and cultural highlights</li>
+  <li><mat-icon>reviews</mat-icon> Real traveler reviews and tips</li>
+</ul>
+
+        <!-- CTA Buttons -->
+<div class="cta-buttons">
+  <button class="btn-login" mat-raised-button routerLink="/login">
+    <mat-icon>login</mat-icon>
+    Login
+  </button>
+
+  <button class="btn-account" mat-stroked-button color="accent" [routerLink]="['/registration-form']">
+    <mat-icon>person_add</mat-icon>
+    Create Account
+  </button>
+</div>
+
+
+
+
+      <!-- RIGHT -->
+      <div class="hero-right">
+        <ion-card class="location-card">
+
+          <ion-img class="location-img"
+            src="https://images.unsplash.com/photo-1591303872989-2640dc28185b?w=800&auto=format&fit=crop&q=60"
+            alt="Cape Town mountain landscape">
+          </ion-img>
+
+          <ion-card-content>
+            <ion-badge color="tertiary">Top Destination</ion-badge>
+
+            <h2 class="location-title">Cape Town, South Africa</h2>
+
+            <p class="location-description">
+              Explore beaches, mountains, and vibrant culture in one of the world's most beautiful cities.
+            </p>
+
+            <div class="meta">
+              <span> 4.9</span>
+              <span>2k+ reviews</span>
+            </div>
+
+            <ion-button expand="block" color="primary" routerLink="/explore">
+              Explore Now
+            </ion-button>
+          </ion-card-content>
+
+        </ion-card>
+      </div>
+
+
+    <!-- DESTINATIONS -->
+    <section class="destinations">
+      <h2 class="section-title">Popular Destinations</h2>
+      <ion-breadcrumbs class="links">
+        <ion-breadcrumb href="propular-destinations">Popular Destinations</ion-breadcrumb>
+        <ion-breadcrumb href="recommendation">Chart</ion-breadcrumb>
+        <ion-breadcrumb href="login">SignIn</ion-breadcrumb>
+      </ion-breadcrumbs>
+      <div class="destination-grid">
+
+        <!-- CARD -->
+        <div class="destination-card">
+          <img src="https://plus.unsplash.com/premium_photo-1668883189152-d771c402c385?w=800" alt="Bali beach view">
+          <h3>Bali</h3>
+          <p>
+            A tropical paradise known for rice terraces, beaches, temples, and vibrant culture.
+          </p>
+        </div>
+
+        <div class="destination-card">
+          <img src="https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?w=987" alt="Eiffel Tower Paris">
+          <h3>Paris</h3>
+          <p>
+            The City of Light, famous for fashion, cafés, and iconic landmarks like the Eiffel Tower.
+          </p>
+        </div>
+
+        <div class="destination-card">
+          <img src="https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=800" alt="Dubai skyline">
+          <h3>Dubai</h3>
+          <p>
+            A futuristic city with luxury shopping, skyscrapers, and desert adventures.
+          </p>
+        </div>
+
+        <div class="destination-card">
+          <img src="https://plus.unsplash.com/premium_photo-1722593856487-9fbd52e32e0f?w=870"
+            alt="Japan cherry blossoms">
+          <h3>Japan</h3>
+          <p>
+            Experience cherry blossoms, culture, and the beauty of nature and tradition.
+          </p>
+        </div>
+
+        <div class="destination-card">
+          <img
+            src="https://images.unsplash.com/photo-1636865266989-58043bceaa71?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8R2hhbmF8ZW58MHx8MHx8fDA%3D"
+            alt="Accra Ghana night lights">
+          <h3>Ghana</h3>
+          <p>
+            Vibrant cityscapes, colorful lights, and rich culture await in Accra.
+          </p>
+        </div>
+
+        <div class="destination-card">
+          <img
+            src="https://plus.unsplash.com/premium_photo-1664304481949-7342698006f3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8QW50YXJjdGljYXxlbnwwfHwwfHx8MA%3D%3D"
+            alt="Antarctica icy landscape">
+          <h3>Antarctica</h3>
+          <p>
+            A frozen world with extreme conditions and breathtaking icy landscapes.
+          </p>
+        </div>
+
+        <div class="destination-card">
+          <img
+            src="https://images.unsplash.com/photo-1655546628936-e1a25058e40c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8TGVzb3Rob3xlbnwwfHwwfHx8MA%3D%3D"
+            alt="Lesotho landscape">
+          <h3>Lesotho</h3>
+          <p>
+            Home to dramatic mountains, waterfalls, and unique wildlife.
+          </p>
+        </div>
+
+        <div class="destination-card">
+          <img
+            src="https://images.unsplash.com/photo-1580746738099-1cb74f972feb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8TW9yb2Njb3xlbnwwfHwwfHx8MA%3D%3D"
+            alt="Morocco landscape">
+          <h3>Morocco</h3>
+          <p>
+            Desert vistas, Atlas Mountains, and timeless cultural wonders.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <h2>Plan Your Journey Today</h2>
+      <p>Adventure is just one click away.</p>
+
+      <ion-button id="present-alert" class="cta-button">
+        Recommendations
+      </ion-button>
+
+      <ion-button class="cta-button1" routerLink="/review">
+        Start Exploring
+      </ion-button>
+
+      <ion-alert trigger="present-alert" header="Share your recommendation" [buttons]="alertButtons"
+        [inputs]="alertInputs">
+      </ion-alert>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+      <p>© 2026 ToGo Travel</p>
+      <small>Explore the world with confidence</small>
+
+      <!-- Share Icons -->
+      <div href="###########" class="share-icons">
+        <a mat-icon-button aria-label="Share on Facebook">
+          <img src="assets/icon/facebook.png" alt="Facebook" class="social-icon" />
+          <mat-icon svgIcon="facebook"></mat-icon>
+        </a>
+
+        <a href="###########" mat-icon-button aria-label="Share on Instagram">
+          <img src="assets/icon/instagram.png" alt="Instagram" class="social-icon" />
+          <mat-icon svgIcon="instagram"></mat-icon>
+        </a>
+
+        <a href="###########" mat-icon-button aria-label="Share on Twitter">
+          <img src="assets/icon/twitter.png" alt="Twitter" class="social-icon" />
+          <mat-icon svgIcon="twitter"></mat-icon>
+        </a>
+      </div>
+
+
+    </footer>
+

@@ -1,0 +1,372 @@
+<ion-header>
+  <mat-toolbar color="primary" class="app-toolbar mat-elevation-z4">
+
+    <div class="toolbar-container">
+
+      <!-- LOGO -->
+      <div class="header-left">
+        <a class="logo" routerLink="/">
+          <div class="logo-icon-wrapper">
+            <mat-icon>search</mat-icon>
+          </div>
+          <span class="logo-text">Go<span>To</span></span>
+        </a>
+      </div>
+
+      <span class="spacer"></span>
+    </div>
+
+ <button class="btn-nav" mat-button routerLink="/registration-form" (click)="closeMenu()">
+  <mat-icon>person_add</mat-icon>
+  <span class="btn-text">Register</span>
+</button>
+
+<button class="btn-nav" mat-button routerLink="/home" (click)="closeMenu()">
+  <mat-icon>arrow_back</mat-icon>
+  <span class="btn-text">Back</span>
+</button>
+
+
+  </mat-toolbar>
+</ion-header>
+
+<!-- Loading After Successfully signing In  -->
+@if (isLoggedIn) {
+<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
+
+<!-- CONTENT -->
+<ion-content class="ion-padding">
+
+  <mat-card class="login-card">
+    <mat-card-header class="login-h1">
+      <mat-card-title>Login Form</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <!-- EMAIL -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <mat-icon matPrefix>email</mat-icon>
+          <input  id="email" matInput formControlName="email" placeholder="Enter your email">
+
+          @if (email.invalid && (email.dirty || email.touched || submitted)) {
+          @if (email.errors?.['required']) {
+          <mat-error>Email is required</mat-error>
+          }
+          @if (email.errors?.['email']) {
+          <mat-error>Enter a valid email</mat-error>
+          }
+          }
+        </mat-form-field>
+
+        <!-- PASSWORD -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <mat-icon matPrefix>lock</mat-icon>
+          <input
+  id="password"
+  placeholder="password"
+  matInput
+  [type]="hide ? 'password' : 'text'"
+  formControlName="password">
+          <button mat-icon-button matSuffix type="button" (click)="hide = !hide">
+            <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+
+          @if (password.invalid && (password.dirty || password.touched || submitted)) {
+          @if (password.errors?.['required']) {
+          <mat-error>Password is required</mat-error>
+          }
+          @if (password.errors?.['minlength']) {
+          <mat-error>Minimum 6 characters</mat-error>
+          }
+          }
+        </mat-form-field>
+
+        <!-- REMEMBER -->
+        <mat-checkbox formControlName="newsletter">Remember me</mat-checkbox>
+
+        <!-- ERROR -->
+        @if (errorMessage) {
+        <p class="error">{{ errorMessage }}</p>
+        }
+
+        <!-- SUBMIT -->
+        <button   id="submit-btn" type="submit" mat-raised-button color="primary" class="full-width">
+          {{ loading ? 'Logging in...' : 'Login' }}
+        </button>
+
+        <!-- SHOP LINK
+        <ion-item routerLink="/shop" lines="none">
+          <ion-icon name="cart-outline" slot="start"></ion-icon>
+          <ion-label>Go to Shop</ion-label>
+        </ion-item>-->
+
+        <!-- REGISTER -->
+        <mat-card-actions>
+          <a mat-button routerLink="/registration-form">
+            <mat-icon>person_add</mat-icon>
+            Create an account
+          </a>
+        </mat-card-actions>
+
+      </form>
+
+    </mat-card-content>
+  </mat-card>
+
+  <div class="reviews-section">
+
+  <!-- HEADER -->
+  <div class="section-header">
+    <div class="section-eyebrow">
+      <span class="material-icons">wb_sunny</span>
+      Destinations
+      <span class="material-icons">wb_sunny</span>
+    </div>
+
+    <h2 class="section-title">Traveler Picks</h2>
+    <p class="section-sub">
+      Handpicked escapes from our community of world wanderers
+    </p>
+  </div>
+
+  <!-- WRAPPER -->
+  <div class="reviews-wrapper">
+
+    <!-- LEFT -->
+    <button class="scroll-btn left" (click)="scrollLeft()">
+      <span class="material-icons">chevron_left</span>
+    </button>
+
+    <!-- SLIDER -->
+    <div class="reviews-grid" #slider>
+
+      <!-- CARD -->
+      <div class="review-card" (mouseenter)="onCardHover($event, -0.5)" (mouseleave)="onCardLeave($event)">
+        <div class="img-wrapper">
+          <img title="China" class="card-img" src="https://plus.unsplash.com/premium_photo-1664304488525-44a96338c0cc" />
+        </div>
+
+        <div class="card-header">
+          <div class="review-avatar">
+            <span class="material-icons">public</span>
+          </div>
+
+          <div class="header-text">
+            <div class="card-title">
+              <span class="material-icons">public</span>
+              China
+            </div>
+
+            <div class="card-subtitle">
+              <span class="material-icons">location_on</span>
+              East Asia
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <p>
+            China is a vast country with rich culture and modern cities.
+          </p>
+
+          <span class="tag">
+            <span class="material-icons">travel_explore</span>
+            Cultural & Scenic
+          </span>
+        </div>
+
+        <div class="card-actions">
+          <button class="action-btn">
+            <span class="material-icons">favorite</span> LIKE
+          </button>
+
+          <button class="action-btn">
+            <span class="material-icons">share</span> SHARE
+          </button>
+        </div>
+      </div>
+
+      <!-- MADAGASCAR -->
+      <div class="review-card">
+        <div class="img-wrapper">
+          <img title="Madagascar" class="card-img" src="https://images.unsplash.com/photo-1558694440-03ade9215d7b" />
+        </div>
+
+        <div class="card-header">
+          <div class="review-avatar">
+            <span class="material-icons">forest</span>
+          </div>
+
+          <div class="header-text">
+            <div class="card-title">
+              <span class="material-icons">forest</span>
+              Madagascar
+            </div>
+
+            <div class="card-subtitle">
+              <span class="material-icons">location_on</span>
+              Indian Ocean
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <p>Unique wildlife and untouched nature paradise.</p>
+
+          <span class="tag">
+            <span class="material-icons">eco</span>
+            Biodiversity
+          </span>
+        </div>
+
+        <div class="card-actions">
+          <button class="action-btn">
+            <span class="material-icons">favorite</span> LIKE
+          </button>
+
+          <button class="action-btn">
+            <span class="material-icons">share</span> SHARE
+          </button>
+        </div>
+      </div>
+
+      <!-- EGYPT -->
+<div class="review-card">
+  <div class="img-wrapper">
+    <img title="Egypt" class="card-img" src="https://images.unsplash.com/photo-1539768942893-daf53e448371?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8RUdZUFR8ZW58MHx8MHx8fDA%3D" alt="Egypt" />
+  </div>
+
+  <div class="card-header">
+    <div class="review-avatar egypt-avatar">
+      <span class="material-icons">account_balance</span>
+    </div>
+
+    <div class="header-text">
+      <div class="card-title">
+        <span class="material-icons">account_balance</span>
+        Egypt
+      </div>
+
+      <div class="card-subtitle">
+        <span class="material-icons">location_on</span>
+        North Africa
+      </div>
+    </div>
+  </div>
+
+  <div class="card-content">
+    <p>Land of the Pharaohs, pyramids, and the Nile — a timeless cradle of civilization.</p>
+    <span class="tag">
+      <span class="material-icons">history_edu</span>
+      Ancient Wonders
+    </span>
+  </div>
+
+  <div class="card-actions">
+    <button class="action-btn"><span class="material-icons">favorite</span> LIKE</button>
+    <button class="action-btn"><span class="material-icons">share</span> SHARE</button>
+  </div>
+</div>
+
+<!-- USA -->
+<div class="review-card">
+  <div class="img-wrapper">
+    <img title="USA" class="card-img" src="https://images.unsplash.com/photo-1576723658639-513237fdd520?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8VVNBJTIwdmFjYXRpb258ZW58MHx8MHx8fDA%3D" alt="USA" />
+  </div>
+
+  <div class="card-header">
+    <div class="review-avatar usa-avatar">
+      <span class="material-icons">flag</span>
+    </div>
+
+    <div class="header-text">
+      <div class="card-title">
+        <span class="material-icons">flag</span>
+        USA
+      </div>
+
+      <div class="card-subtitle">
+        <span class="material-icons">location_on</span>
+        North America
+      </div>
+    </div>
+  </div>
+
+  <div class="card-content">
+    <p>From New York's skyline to the Grand Canyon, the USA offers endless diversity and adventure.</p>
+    <span class="tag">
+      <span class="material-icons">explore</span>
+      Diverse Destinations
+    </span>
+  </div>
+
+  <div class="card-actions">
+    <button class="action-btn"><span class="material-icons">favorite</span> LIKE</button>
+    <button class="action-btn"><span class="material-icons">share</span> SHARE</button>
+  </div>
+</div>
+
+
+      <!-- DURBAN -->
+      <div class="review-card">
+        <div class="img-wrapper">
+          <img title="durban" class="card-img" src="https://media.istockphoto.com/id/506662420/photo/moses-mabhida-stadium.webp?a=1&b=1&s=612x612&w=0&k=20&c=bYI8CppJXdev8A1QrKqvQktq0778ThRPRlb1uM-uL-w=" />
+        </div>
+
+        <div class="card-header">
+          <div class="review-avatar">
+            <span class="material-icons">beach_access</span>
+          </div>
+
+          <div class="header-text">
+            <div class="card-title">
+              <span class="material-icons">beach_access</span>
+              Durban
+            </div>
+
+            <div class="card-subtitle">
+              <span class="material-icons">place</span>
+              South Africa
+            </div>
+          </div>
+        </div>
+
+        <div class="card-content">
+          <p>Golden beaches, surf culture, and warm weather.</p>
+
+          <span class="tag">
+            <span class="material-icons">sunny</span>
+            Coastal Escape
+          </span>
+        </div>
+
+        <div class="card-actions">
+          <button class="action-btn">
+            <span class="material-icons">favorite</span> LIKE
+          </button>
+
+          <button class="action-btn">
+            <span class="material-icons">share</span> SHARE
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT -->
+    <button class="scroll-btn right" (click)="scrollRight()">
+      <span class="material-icons">chevron_right</span>
+    </button>
+
+  </div>
+    <!-- FOOTER -->
+    <app-footer></app-footer>
+</div>
+
+
